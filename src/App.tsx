@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import CodeExamples from './components/CodeExamples';
 import './styles/globals.css';
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <CodeExamples />
       </main>
     </div>
   );
