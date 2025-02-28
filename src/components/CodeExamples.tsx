@@ -27,7 +27,6 @@ const CodeExamples: React.FC = () => {
               Deploy from Git or your CLI.
             </p>
             
-            {/* Using the actual image */}
             <div className="rounded-lg overflow-hidden border border-gray-800 shadow-lg">
               <img 
                 src="/code-ex1.PNG" 
@@ -58,7 +57,6 @@ const CodeExamples: React.FC = () => {
               Chat with your team on real, production-grade UI, not just designs.
             </p>
             
-            {/* Using the actual image */}
             <div className="rounded-lg overflow-hidden border border-gray-800 shadow-lg">
               <img 
                 src="/code-ex2.PNG" 
