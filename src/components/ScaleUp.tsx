@@ -1,6 +1,10 @@
 import { motion } from 'framer-motion';
+import { useTheme } from '../context/ThemeContext';
 
 const ScaleUp = () => {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
+
   return (
     <section className="bg-black py-24 border-t border-gray-800">
       <div className="container mx-auto px-4 max-w-6xl">
@@ -15,15 +19,21 @@ const ScaleUp = () => {
           <h2 className="text-3xl md:text-4xl text-white font-bold mr-4">
             Scale your
           </h2>
-          <button className="bg-transparent border border-gray-700 rounded-full px-4 py-2 text-white flex items-center hover:bg-gray-900 transition-colors">
-            <img src="/enterprise-icon.PNG" alt="Enterprise Icon" className="w-5 h-5 mr-2" />
+          <button className={`bg-transparent border border-gray-700 rounded-full px-4 py-2 text-white flex items-center transition-colors ${isDark ? 'hover:bg-gray-800' : 'hover:bg-gray-100'}`}>
+            <img 
+              src={isDark ? "/enterprise-icon.PNG" : "/enterprise-icon-light.PNG"} 
+              alt="Enterprise Icon" 
+              className="w-5 h-5 mr-2" />
             Enterprise
           </button>
           <h2 className="text-3xl md:text-4xl text-white font-bold mx-4">
             without compromising
           </h2>
-          <button className="bg-transparent border border-gray-700 rounded-full px-4 py-2 text-white flex items-center hover:bg-gray-900 transition-colors">
-            <img src="/security-icon.PNG" alt="Security Icon" className="w-5 h-5 mr-2" />
+          <button className={`bg-transparent border border-gray-700 rounded-full px-4 py-2 text-white flex items-center transition-colors ${isDark ? 'hover:bg-gray-800' : 'hover:bg-gray-100'}`}>
+            <img 
+              src={isDark ? "/security-icon.PNG" : "/security-icon-light.PNG"} 
+              alt="Security Icon" 
+              className="w-5 h-5 mr-2" />
             Security
           </button>
         </motion.div>
@@ -48,10 +58,14 @@ const ScaleUp = () => {
               <span className="text-purple-500">Enterprise</span> needs.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className="bg-white text-black font-medium px-6 py-3 rounded-3xl hover:bg-gray-200 transition-colors">
+              <button
+                className={`font-medium px-6 py-3 rounded-3xl transition-colors ${isDark ? '!bg-white !text-black' : '!bg-black !text-white !hover:bg-gray-300'}`}
+              >
                 Start Deploying
               </button>
-              <button className="border border-gray-700 text-white font-medium px-6 py-3 rounded-3xl hover:border-gray-500 hover:bg-gray-900 transition-colors">
+              <button
+                className={`border border-gray-700 font-medium px-6 py-3 rounded-3xl hover:border-gray-500 transition-colors ${isDark ? '!border-gray-600 !text-white' : '!border-gray-200 !text-black shadow-lg'}`}
+              >
                 Talk to an Expert
               </button>
             </div>
@@ -72,7 +86,7 @@ const ScaleUp = () => {
               with an interactive product tour, trial, or a personalized demo.
             </p>
             <div>
-              <button className="border border-gray-700 text-white font-medium px-6 py-3 my-8 rounded-3xl hover:border-gray-500 hover:bg-gray-900 transition-colors">
+              <button className="border border-gray-700 text-white font-medium px-6 py-3 my-8 rounded-3xl hover:border-gray-500 transition-colors">
                 Explore Enterprise
               </button>
             </div>

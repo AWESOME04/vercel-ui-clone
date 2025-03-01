@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { useTheme } from '../../context/ThemeContext';
 
 const LegalDropdown = () => {
   const [isLegalMenuOpen, setIsLegalMenuOpen] = useState<boolean>(false);
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
 
   const toggleLegalMenu = (): void => {
     setIsLegalMenuOpen(!isLegalMenuOpen);
@@ -18,7 +21,7 @@ const LegalDropdown = () => {
     <div className="relative">
       <button 
         onClick={toggleLegalMenu}
-        className="text-gray-400 hover:text-white transition-colors text-sm flex items-center"
+        className={`${isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black'} transition-colors text-sm flex items-center`}
       >
         Legal
         <svg 
@@ -33,12 +36,12 @@ const LegalDropdown = () => {
       </button>
       
       {isLegalMenuOpen && (
-        <div className="absolute left-0 bottom-8 bg-[#0A0A0A] border border-gray-800 rounded-md shadow-lg py-2 z-10 w-64">
+        <div className={`absolute left-0 bottom-8 ${isDark ? 'bg-[#0A0A0A] border-gray-800' : 'bg-white border-gray-200'} border rounded-md shadow-lg py-2 z-10 w-64`}>
           {legalLinks.map((link, index) => (
             <a 
               key={index} 
               href="#" 
-              className="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-[#181818]"
+              className={`block px-4 py-2 text-sm ${isDark ? 'text-gray-400 hover:text-white hover:bg-[#181818]' : 'text-gray-600 hover:text-black hover:bg-gray-100'}`}
             >
               {link}
             </a>

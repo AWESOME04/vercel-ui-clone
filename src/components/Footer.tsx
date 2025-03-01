@@ -1,31 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useTheme } from '../context/ThemeContext';
 import FooterColumn from './footer/FooterColumn';
 import FooterSocial from './footer/FooterSocial';
 import LegalDropdown from './footer/LegalDropdown';
 import ScrollToTopButton from './footer/ScrollToTopButton';
 import StatusIndicator from './footer/StatusIndicator';
 import ThemeToggle from './footer/ThemeToggle';
-import { ThemeType } from '../types/footer';
 import { productLinks, resourceLinks, companyLinks } from '../data/footerData';
 
-
-const Footer = () => {
-  const [currentTheme, setCurrentTheme] = useState<ThemeType>('system');
-
-  const handleThemeChange = (theme: ThemeType): void => {
-    setCurrentTheme(theme);
-    /* 
-      TODO: add theme logic here
-    */
-  };
-
+const Footer: React.FC = () => {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
+  
   const companyLinksWithLegal: (string | React.ReactNode)[] = [
     ...companyLinks.filter(link => link !== 'Legal'),
     <LegalDropdown key="legal" />
   ];
 
   return (
-    <footer className="bg-black py-16 border-t border-gray-800 relative">
+    <footer className={`py-16 border-t relative transition-colors duration-300 ${isDark ? 'bg-black border-gray-800' : 'bg-white border-gray-200'}`}>
       <div className="container mx-auto px-4 max-w-6xl">
         <ScrollToTopButton />
 
@@ -44,12 +37,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom section */}
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-800">
+        <div className={`flex flex-col md:flex-row justify-between items-center pt-8 border-t ${isDark ? 'border-gray-800' : 'border-gray-200'}`}>
           <StatusIndicator />
-          <ThemeToggle 
-            currentTheme={currentTheme}
-            onThemeChange={handleThemeChange}
-          />
+          <ThemeToggle />
         </div>
       </div>
     </footer>
