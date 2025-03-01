@@ -1,10 +1,6 @@
-import React from 'react';
+import { TrianglePrismProps } from "../../types/hero";
 
-interface TrianglePrismProps {
-  className?: string;
-}
-
-const TrianglePrism: React.FC<TrianglePrismProps> = ({ className = '' }) => {
+const TrianglePrism = ({ className = '' }: TrianglePrismProps) => {
   return (
     <svg 
       viewBox="0 0 800 600" 

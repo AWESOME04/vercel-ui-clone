@@ -1,35 +1,89 @@
-import { ThemeToggleProps } from "../../types/footer";
-import { ThemeType } from "../../types/footer";
+import { useTheme } from '../../context/ThemeContext';
 
-const ThemeToggle = ({ 
-  onThemeChange,
-  currentTheme = 'system'
-}: ThemeToggleProps) => {
-  const handleThemeChange = (theme: ThemeType): void => {
-    if (onThemeChange) {
-      onThemeChange(theme);
-    }
-  };
+const ThemeToggle = () => {
+  const { theme, setTheme } = useTheme();
 
   return (
-    <div className="flex space-x-2 mt-4 md:mt-0">
+    <div className="flex items-center rounded-full p-1" style={{ backgroundColor: 'rgb(var(--muted))' }}>
+      {/* System Theme */}
       <button 
-        className={`p-2 rounded-full hover:bg-gray-900 transition-colors ${currentTheme === 'system' ? 'bg-gray-800' : ''}`}
-        onClick={() => handleThemeChange('system')}
+        className="p-2 rounded-full transition-colors"
+        style={{
+          backgroundColor: theme === 'system' ? 'rgb(var(--background))' : 'transparent',
+        }}
+        onClick={() => setTheme('system')}
+        aria-label="Use system theme"
+        title="Use system theme"
+        onMouseEnter={(e) => {
+          if (theme !== 'system') {
+            e.currentTarget.style.backgroundColor = 'rgb(var(--hover-bg))';
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (theme !== 'system') {
+            e.currentTarget.style.backgroundColor = 'transparent';
+          }
+        }}
       >
-        <img src="/system-icon.svg" alt="System" className="w-5 h-5" />
+        <img 
+          src="/system-icon.svg" 
+          alt="System theme"
+          className="w-5 h-5" 
+        />
       </button>
+
+      {/* Light Theme */}
       <button 
-        className={`p-2 rounded-full hover:bg-gray-900 transition-colors ${currentTheme === 'light' ? 'bg-gray-800' : ''}`}
-        onClick={() => handleThemeChange('light')}
+        className="p-2 rounded-full transition-colors"
+        style={{
+          backgroundColor: theme === 'light' ? 'rgb(var(--background))' : 'transparent',
+        }}
+        onClick={() => setTheme('light')}
+        aria-label="Use light theme"
+        title="Use light theme"
+        onMouseEnter={(e) => {
+          if (theme !== 'light') {
+            e.currentTarget.style.backgroundColor = 'rgb(var(--hover-bg))';
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (theme !== 'light') {
+            e.currentTarget.style.backgroundColor = 'transparent';
+          }
+        }}
       >
-        <img src="/light-mode-icon.svg" alt="Light mode" className="w-5 h-5" />
+        <img 
+          src="/light-icon.svg" 
+          alt="Light theme"
+          className="w-5 h-5" 
+        />
       </button>
+
+      {/* Dark Theme */}
       <button 
-        className={`p-2 rounded-full hover:bg-gray-900 transition-colors ${currentTheme === 'dark' ? 'bg-gray-800' : ''}`}
-        onClick={() => handleThemeChange('dark')}
+        className="p-2 rounded-full transition-colors"
+        style={{
+          backgroundColor: theme === 'dark' ? 'rgb(var(--background))' : 'transparent',
+        }}
+        onClick={() => setTheme('dark')}
+        aria-label="Use dark theme"
+        title="Use dark theme"
+        onMouseEnter={(e) => {
+          if (theme !== 'dark') {
+            e.currentTarget.style.backgroundColor = 'rgb(var(--hover-bg))';
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (theme !== 'dark') {
+            e.currentTarget.style.backgroundColor = 'transparent';
+          }
+        }}
       >
-        <img src="/dark-mode-icon.svg" alt="Dark mode" className="w-5 h-5" />
+        <img 
+          src="/dark-icon.svg" 
+          alt="Dark theme"
+          className="w-5 h-5" 
+        />
       </button>
     </div>
   );

@@ -1,17 +1,19 @@
-import { StatusIndicatorProps } from "../../types/footer";
-  
-  const StatusIndicator = ({
-    isOnline = true,
-    statusText = 'All systems normal'
-  }: StatusIndicatorProps) => {
-    return (
-      <div className="flex items-center">
-        <span className="flex items-center text-blue-500 text-sm">
-          <span className={isOnline ? 'w-2 h-2 bg-blue-500 rounded-full mr-2' : 'w-2 h-2 bg-red-500 rounded-full mr-2'}></span>
-          {statusText}
-        </span>
-      </div>
-    );
-  };
-  
-  export default StatusIndicator;
+import { useTheme } from '../../context/ThemeContext';
+
+const StatusIndicator = () => {
+  const { resolvedTheme } = useTheme();
+  const isOnline = true;
+  const statusText = 'All systems normal';
+  const isDark = resolvedTheme === 'dark';
+
+  return (
+    <div className="flex items-center mb-4 md:mb-0">
+      <span className={`flex items-center ${isDark ? 'text-blue-400' : 'text-blue-600'} text-sm`}>
+        <span className={`w-2 h-2 ${isOnline ? (isDark ? 'bg-blue-400' : 'bg-blue-600') : 'bg-red-500'} rounded-full mr-2`}></span>
+        {statusText}
+      </span>
+    </div>
+  );
+};
+
+export default StatusIndicator;

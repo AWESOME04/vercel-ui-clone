@@ -1,5 +1,6 @@
 import { RefObject } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { useTheme } from '../../context/ThemeContext';
 import { NavLinkType } from '../../types/navbar';
 import NavbarDropdown from './NavbarDropdown';
 
@@ -20,6 +21,9 @@ const NavLink = ({
   onClick, 
   dropdownRef 
 }: NavLinkProps) => {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
+
   return (
     <div 
       className="relative"
@@ -29,10 +33,12 @@ const NavLink = ({
     >
       <button 
         onClick={onClick}
-        className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+        className={`px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link-hover ${
           isOpen 
-            ? 'text-white' 
-            : 'text-gray-300 hover:text-white'
+            ? isDark ? 'text-white' : 'text-black'
+            : isDark 
+              ? 'text-gray-300 hover:text-white' 
+              : 'text-gray-700 hover:text-black'
         }`}
       >
         <span>{link.name}</span>

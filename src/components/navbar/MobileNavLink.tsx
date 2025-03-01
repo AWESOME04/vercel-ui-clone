@@ -1,18 +1,28 @@
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from '../../context/ThemeContext';
 import { NavLinkType } from '../../types/navbar';
 
 interface MobileNavLinkProps {
   link: NavLinkType;
-  isOpen: boolean;
-  toggleDropdown: () => void;
 }
 
-const MobileNavLink = ({ link, isOpen, toggleDropdown }: MobileNavLinkProps) => {
+const MobileNavLink = ({ link }: MobileNavLinkProps) => {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className="py-1">
       <button
         onClick={toggleDropdown}
-        className="flex justify-between items-center w-full py-3 text-sm font-medium text-gray-300 hover:text-white"
+        className={`flex justify-between items-center w-full py-3 rounded-md px-2 text-sm font-medium nav-link-hover ${
+          isDark ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-black'
+        }`}
       >
         {link.name}
         {link.hasDropdown && (
@@ -31,7 +41,9 @@ const MobileNavLink = ({ link, isOpen, toggleDropdown }: MobileNavLinkProps) => 
       <AnimatePresence>
         {link.hasDropdown && isOpen && link.dropdownColumns && (
           <motion.div
-            className="pl-4 mt-2 mb-2 border-l border-vercel-gray-700 space-y-3"
+            className={`pl-4 mt-2 mb-2 space-y-3 border-l ${
+              isDark ? 'border-gray-700' : 'border-gray-300'
+            }`}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -39,16 +51,28 @@ const MobileNavLink = ({ link, isOpen, toggleDropdown }: MobileNavLinkProps) => 
           >
             {link.dropdownColumns.map((column, colIndex) => (
               <div key={colIndex} className="mb-4">
-                <h3 className="text-xs uppercase tracking-wider text-gray-400 font-medium mb-2">{column.title}</h3>
+                <h3 className={`text-xs uppercase tracking-wider font-medium mb-2 ${
+                  isDark ? 'text-gray-400' : 'text-gray-600'
+                }`}>
+                  {column.title}
+                </h3>
                 <div className="space-y-2">
                   {column.items.map((item, itemIndex) => (
                     <a
                       key={itemIndex}
                       href={item.url}
-                      className="block py-2"
+                      className={`block py-2 px-2 rounded-md nav-link-hover ${
+                        isDark ? 'text-white' : 'text-black'
+                      }`}
                     >
-                      <p className="text-sm font-medium text-white">{item.name}</p>
-                      <p className="text-xs text-gray-400">{item.description}</p>
+                      <p className="text-sm font-medium">
+                        {item.name}
+                      </p>
+                      <p className={`text-xs ${
+                        isDark ? 'text-gray-400' : 'text-gray-600'
+                      }`}>
+                        {item.description}
+                      </p>
                     </a>
                   ))}
                 </div>
