@@ -9,7 +9,7 @@ interface NavLinkProps {
   onMouseEnter: () => void;
   onMouseLeave: () => void;
   onClick: () => void;
-  dropdownRef: RefObject<HTMLDivElement> | undefined;
+  dropdownRef: RefObject<HTMLDivElement | null> | undefined;
 }
 
 const NavLink = ({ 
@@ -23,7 +23,7 @@ const NavLink = ({
   return (
     <div 
       className="relative"
-      ref={dropdownRef}
+      ref={dropdownRef as RefObject<HTMLDivElement>}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

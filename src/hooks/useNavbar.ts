@@ -6,7 +6,9 @@ export const useNavbar = (navLinks: NavLinkType[]) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const dropdownRefs = useRef<Record<string, React.RefObject<HTMLDivElement>>>({});
+  
+  // Update the type to correctly reflect that the current property of RefObject may be null
+  const dropdownRefs = useRef<Record<string, React.RefObject<HTMLDivElement | null>>>({});
 
   // Initialize refs for each dropdown
   useEffect(() => {
@@ -36,7 +38,7 @@ export const useNavbar = (navLinks: NavLinkType[]) => {
     const handleClickOutside = (event: MouseEvent) => {
       if (openDropdown) {
         const currentRef = dropdownRefs.current[openDropdown];
-        if (currentRef && currentRef.current && !currentRef.current.contains(event.target as Node)) {
+        if (currentRef?.current && !currentRef.current.contains(event.target as Node)) {
           setOpenDropdown(null);
         }
       }
