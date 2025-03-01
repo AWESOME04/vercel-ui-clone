@@ -58,7 +58,7 @@ const MobileMenu = ({ links }: MobileMenuProps) => {
         <div className="pt-4 flex flex-col space-y-4">
           <a 
             href="#login" 
-            className={`block py-2 text-sm font-medium ${
+            className={`block py-2 px-2 rounded-md text-sm font-medium nav-link-hover ${
               isDark ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-black'
             }`}
           >
@@ -66,7 +66,7 @@ const MobileMenu = ({ links }: MobileMenuProps) => {
           </a>
           <a 
             href="#contact" 
-            className={`block py-2 text-sm font-medium ${
+            className={`block py-2 px-2 rounded-md text-sm font-medium nav-link-hover ${
               isDark ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-black'
             }`}
           >
@@ -74,7 +74,7 @@ const MobileMenu = ({ links }: MobileMenuProps) => {
           </a>
           <a
             href="#signup"
-            className={`block py-2 text-sm font-medium ${
+            className={`block py-2 px-2 rounded-md text-sm font-medium nav-link-hover ${
               isDark ? 'text-white hover:text-gray-300' : 'text-black hover:text-gray-700'
             }`}
           >

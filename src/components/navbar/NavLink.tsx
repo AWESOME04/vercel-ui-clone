@@ -33,7 +33,7 @@ const NavLink = ({
     >
       <button 
         onClick={onClick}
-        className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+        className={`px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link-hover ${
           isOpen 
             ? isDark ? 'text-white' : 'text-black'
             : isDark 

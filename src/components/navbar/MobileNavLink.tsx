@@ -20,7 +20,7 @@ const MobileNavLink = ({ link }: MobileNavLinkProps) => {
     <div className="py-1">
       <button
         onClick={toggleDropdown}
-        className={`flex justify-between items-center w-full py-3 text-sm font-medium ${
+        className={`flex justify-between items-center w-full py-3 rounded-md px-2 text-sm font-medium nav-link-hover ${
           isDark ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-black'
         }`}
       >
@@ -61,11 +61,11 @@ const MobileNavLink = ({ link }: MobileNavLinkProps) => {
                     <a
                       key={itemIndex}
                       href={item.url}
-                      className="block py-2"
-                    >
-                      <p className={`text-sm font-medium ${
+                      className={`block py-2 px-2 rounded-md nav-link-hover ${
                         isDark ? 'text-white' : 'text-black'
-                      }`}>
+                      }`}
+                    >
+                      <p className="text-sm font-medium">
                         {item.name}
                       </p>
                       <p className={`text-xs ${

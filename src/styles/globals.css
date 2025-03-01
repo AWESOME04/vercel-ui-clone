@@ -19,6 +19,7 @@
   --button: 0, 112, 243;
   --button-foreground: 255, 255, 255;
   --ring: 0, 112, 243;
+  --hover-bg: 243, 244, 246;
 }
 
 [data-theme="dark"] {
@@ -35,6 +36,7 @@
   --button: 255, 255, 255;
   --button-foreground: 0, 0, 0;
   --ring: 0, 112, 243;
+  --hover-bg: 26, 26, 26;
 }
 
 html {
@@ -123,6 +125,15 @@ body {
 
 .navbar-dropdown.open {
   @apply visible opacity-100 translate-y-0;
+}
+
+/* Hover styles for navbar items */
+.dark .nav-link-hover:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.light .nav-link-hover:hover {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 /* Card hover effects */
