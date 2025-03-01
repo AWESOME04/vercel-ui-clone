@@ -1,10 +1,6 @@
-import React from 'react';
+import { GradientBackgroundProps } from "../../types/hero";
 
-interface GradientBackgroundProps {
-  className?: string;
-}
-
-const GradientBackground: React.FC<GradientBackgroundProps> = ({ className = '' }) => {
+const GradientBackground = ({ className = '' }: GradientBackgroundProps) => {
   return (
     <div className={`absolute inset-0 z-0 ${className}`}>
       {/* Main gradient */}

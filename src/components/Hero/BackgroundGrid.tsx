@@ -1,10 +1,6 @@
-import React from 'react';
+import { BackgroundGridProps } from "../../types/hero";
 
-interface BackgroundGridProps {
-  className?: string;
-}
-
-const BackgroundGrid: React.FC<BackgroundGridProps> = ({ className = '' }) => {
+const BackgroundGrid = ({ className = '' }: BackgroundGridProps) => {
   return (
     <div className={`absolute inset-0 z-0 opacity-5 ${className}`}>
       <div className="absolute inset-0">

@@ -1,7 +1,6 @@
-import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
 
-const StatusIndicator: React.FC = () => {
+const StatusIndicator = () => {
   const { resolvedTheme } = useTheme();
   const isOnline = true;
   const statusText = 'All systems normal';
